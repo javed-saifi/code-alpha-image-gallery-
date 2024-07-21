@@ -1,47 +1,50 @@
-/* styles.css */
-
 body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: white;
+}
+
+#display {
+    width: 200px;
+    height: 30px;
+    font-size: 24px;
+    text-align: right;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+table {
+    border-collapse: collapse;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
+    margin-top: 15px;
+    border-radius: 4px;
+    
 }
 
-.calculator {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 300px;
+
+td {
+    padding: 10px;
 }
 
-.display {
-    background-color: #222;
-    color: #fff;
-    text-align: right;
-    padding: 20px;
-    font-size: 2em;
-    box-sizing: border-box;
-}
-
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
-
-.btn {
-    padding: 20px;
-    font-size: 1.5em;
-    border: 1px solid #ccc;
+button[type="button"] {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: lightgray;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.btn:hover {
-    background-color: #f0f0f0;
-}
-
-.btn:active {
+button[type="button"]:hover {
     background-color: #ccc;
+}
+
+button[type="button"]:active {
+    background-color: #aaa;
+}
+button .Clear-btn{
+    width: 10px;
 }
