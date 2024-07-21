@@ -1,61 +1,50 @@
-// script.js
-
-let displayElement = document.getElementById('display');
-let currentNumber = '';
-let previousNumber = '';
-let operation = undefined;
-
-function clearDisplay() {
-    currentNumber = '';
-    previousNumber = '';
-    operation = undefined;
-    updateDisplay();
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: white;
 }
 
-function appendNumber(number) {
-    currentNumber = currentNumber.toString() + number.toString();
-    updateDisplay();
+#display {
+    width: 200px;
+    height: 30px;
+    font-size: 24px;
+    text-align: right;
+    padding: 10px;
+    border: 1px solid #ccc;
 }
 
-function chooseOperation(op) {
-    if (currentNumber === '') return;
-    if (previousNumber !== '') {
-        compute();
-    }
-    operation = op;
-    previousNumber = currentNumber;
-    currentNumber = '';
+table {
+    border-collapse: collapse;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    border-radius: 4px;
+    
 }
 
-function compute() {
-    let computation;
-    const prev = parseFloat(previousNumber);
-    const current = parseFloat(currentNumber);
-    if (isNaN(prev) || isNaN(current)) return;
-    switch (operation) {
-        case '+':
-            computation = prev + current;
-            break;
-        case '-':
-            computation = prev - current;
-            break;
-        case '*':
-            computation = prev * current;
-            break;
-        case '/':
-            computation = prev / current;
-            break;
-        default:
-            return;
-    }
-    currentNumber = computation;
-    operation = undefined;
-    previousNumber = '';
-    updateDisplay();
+
+td {
+    padding: 10px;
 }
 
-function updateDisplay() {
-    displayElement.innerText = currentNumber;
+button[type="button"] {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: lightgray;
+    cursor: pointer;
 }
 
-clearDisplay();
+button[type="button"]:hover {
+    background-color: #ccc;
+}
+
+button[type="button"]:active {
+    background-color: #aaa;
+}
+button .Clear-btn{
+    width: 10px;
+}
