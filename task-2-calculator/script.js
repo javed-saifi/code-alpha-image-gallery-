@@ -1,50 +1,59 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: white;
-}
+let display = document.getElementById('display');
+let buttons = document.querySelectorAll('button[type="button"]');
 
-#display {
-    width: 200px;
-    height: 30px;
-    font-size: 24px;
-    text-align: right;
-    padding: 10px;
-    border: 1px solid #ccc;
-}
+let calculator = {
+    displayValue: '',
+    firstOperand: '',
+    operator: '',
+    secondOperand: '',
+    result: '',
 
-table {
-    border-collapse: collapse;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-    border-radius: 4px;
-    
-}
+    init: function() {
+        buttons.forEach(button => {
+            button.addEventListener('click', this.handleClick);
+        });
+    },
 
+    handleClick: function(event) {
+        let value = event.target.value;
 
-td {
-    padding: 10px;
-}
+        if (value === 'C') {
+            calculator.clear();
+        } else if (value === '=') {
+            calculator.calculate();
+        } else if (value === '+' || value === '-' || value === '*' || value === '/') {
+            calculator.setOperator(value);
+        } else {
+            calculator.appendValue(value);
+        }
 
-button[type="button"] {
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    border: none;
-    border-radius: 5px;
-    background-color: lightgray;
-    cursor: pointer;
-}
+        display.value = calculator.displayValue;
+    },
 
-button[type="button"]:hover {
-    background-color: #ccc;
-}
+    clear: function() {
+        this.displayValue = '';
+        this.firstOperand = '';
+        this.operator = '';
+        this.secondOperand = '';
+        this.result = '';
+    },
 
-button[type="button"]:active {
-    background-color: #aaa;
-}
-button .Clear-btn{
-    width: 10px;
-}
+    setOperator: function(operator) {
+        this.operator = operator;
+        this.firstOperand = this.displayValue;
+        this.displayValue = '';
+    },
+
+    appendValue: function(value) {
+        this.displayValue += value;
+    },
+
+    calculate: function() {
+        this.secondOperand = this.displayValue;
+        let result = eval(`${this.firstOperand} ${this.operator} ${this.secondOperand}`);
+        this.displayValue = result;
+        this.result = result;
+    }
+};
+
+calculator.init();
